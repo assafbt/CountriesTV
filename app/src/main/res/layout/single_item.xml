@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ /**
+  ~  * Created by Assaf Biton
+  ~  */
+  -->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/main_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="name"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/main_nativeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="nativeName"
+        android:textSize="18sp"/>
+
+    <TextView
+        android:id="@+id/main_area"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="area"/>
+</LinearLayout>
