@@ -20,7 +20,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String TAG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
 
     // Database Name
     private static final String DATABASE_NAME = "country_db";
@@ -99,9 +99,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return mCountryList;
     }//getAllCountries
 
-    public List<Country> getSortedCountries(String columName, String sortBy) { // #################
+    public List<Country> getSortedCountries(String columName, String sortBy) {
         String funTag = TAG + ", getAllCountries:";
-        String query =  "";
+        String query;
         switch (columName)
         {
             case "name":
@@ -141,59 +141,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.close();
 
         return mCountryList;
-    }//getAllCountries
+    }//getSortedCountries
 
-    public List<Country> getAllCountriesSortedByName(String sort) { // #################
-        String funTag = TAG + ", getAllCountriesSortedByName:";
-
-        String query =  "SELECT  * FROM " + Country.TABLE_NAME + " ORDER BY " + Country.COLUMN_NAME + " " + sort;
-
-        List<Country> mCountryList = new ArrayList<>();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-        Country mCountry;
-
-        if (cursor.moveToFirst()) {
-            do {
-                mCountry = new Country();
-                mCountry.setName(cursor.getString(cursor.getColumnIndex(Country.COLUMN_NAME)));
-                mCountry.setNativeName(cursor.getString(cursor.getColumnIndex(Country.COLUMN_NATIVE_NAME)));
-                mCountry.setArea(cursor.getInt(cursor.getColumnIndex(Country.COLUMN_AREA)));
-
-                mCountryList.add(mCountry);
-            } while (cursor.moveToNext());
-        }
-        // close db connection
-        db.close();
-
-        return mCountryList;
-    }//getAllCountriesSortedByName
-
-    public List<Country> getAllCountriesSortedByArea(String sort) { // #################
-        String funTag = TAG + ", getAllCountriesSortedByName:";
-
-        String query =  "SELECT  * FROM " + Country.TABLE_NAME + " ORDER BY " + Country.COLUMN_AREA + " " + sort;
-
-        List<Country> mCountryList = new ArrayList<>();
-        SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(query, null);
-        Country mCountry;
-
-        if (cursor.moveToFirst()) {
-            do {
-                mCountry = new Country();
-                mCountry.setName(cursor.getString(cursor.getColumnIndex(Country.COLUMN_NAME)));
-                mCountry.setNativeName(cursor.getString(cursor.getColumnIndex(Country.COLUMN_NATIVE_NAME)));
-                mCountry.setArea(cursor.getInt(cursor.getColumnIndex(Country.COLUMN_AREA)));
-
-                mCountryList.add(mCountry);
-            } while (cursor.moveToNext());
-        }
-        // close db connection
-        db.close();
-
-        return mCountryList;
-    }//getAllCountriesSortedByArea
 
     public int getDatabaseVersion()
     {

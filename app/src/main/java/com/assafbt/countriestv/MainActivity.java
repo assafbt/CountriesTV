@@ -49,10 +49,10 @@ public class MainActivity extends AppCompatActivity {
         countryList = dbHelper.getSortedCountries("none","");
 
         Log.i(functionTAG, "DatabaseVersion " + dbHelper.getDatabaseVersion());
-
+        updateRv();
         progressDialog.dismiss();
 
-        final Button btnSortName, btnSortArea;
+        final Button btnSortName, btnSortArea,btnShowData;
         btnSortName = (Button)findViewById(R.id.btn_sort_name);
         btnSortName.setText("name A->Z");
         btnSortName.setOnClickListener(new View.OnClickListener() {
@@ -95,7 +95,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        updateRv();
+        btnShowData = (Button)findViewById(R.id.btn_show_data);
+        btnShowData.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                countryList = dbHelper.getSortedCountries("none", "none");
+                updateRv();
+                //btnShowData.setVisibility(View.GONE);
+            }
+        });
 
     }//onCreate
 
@@ -117,16 +124,9 @@ public class MainActivity extends AppCompatActivity {
                         String mNativeName = jsonObject.getString("nativeName");
                         Log.i(functionTAG,"mNativeName " + mNativeName);
                         int mArea = jsonObject.getInt("area");
+                        //String mArea = jsonObject.getString("area");
                         Log.i(functionTAG,"area " + mArea);
                         long possition = dbHelper.insertCountry(new Country(mName, mNativeName,mArea));
-
-                        Country country = new Country("0","0",0);
-                        country.setName(mName);
-                        Log.i(functionTAG,"getName()" + country.getName());
-                        country.setNativeName(jsonObject.getString("nativeName"));
-                        Log.i(functionTAG,"getNativeName()" + country.getNativeName());
-                        country.setArea(jsonObject.getInt("area"));
-                        Log.i(functionTAG,"getArea()" + country.getArea());
 
                         // long possition = dbHelper.insertCountry(country);
 

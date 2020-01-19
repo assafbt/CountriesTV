@@ -29,7 +29,11 @@
             android:layout_height="wrap_content"
             android:id="@+id/btn_sort_area"
             android:text="Srot By Area"/>
-
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_show_data"
+            android:text="show data"/>
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

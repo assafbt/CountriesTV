@@ -7,8 +7,8 @@ android {
         applicationId "com.assafbt.countriestv"
         minSdkVersion 24
         targetSdkVersion 29
-        versionCode 1
-        versionName "1.1"
+        versionCode 4
+        versionName "1.4"
     }
     buildTypes {
         release {
